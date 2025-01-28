@@ -12,25 +12,17 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     __tablename__ = 'user'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True, unique = True)
     username = db.Column(db.String(250), nullable=False, unique = True)
-    firstname = db.Column(db.String(250), nullable=False)
-    lastname = db.Column(db.String(250), nullable=False)
+    password = db.Column(db.String(250), nullable=False)
+    favourite_list = db.Column(db.String(250), ForeignKey('favourite_list.id'), nullable=False)
     email = db.Column(db.String(250), nullable=False, unique = True)
 
-class Post(db.Model):
-    __tablename__ = 'post'
+class Favourite_list(db.Model):
+    __tablename__ = 'favourite_list'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False)
+    user_favourite_id = db.Column(db.String(250), ForeignKey('user.id'), nullable=False)
 
-class Media(db.Model):
-    __tablename__ = "media"
-    id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.String(250), nullable=False)
-    url = db.Column(db.String(250), nullable=False)
-    post_id = db.Column(db.Integer, ForeignKey('post.id'), nullable=False)
 
 class Comment(db.Model):
     __tablename__ = 'comment'
@@ -41,10 +33,52 @@ class Comment(db.Model):
     author_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False)
     post_id = db.Column(db.Integer, ForeignKey('post.id'), nullable=False)
 
-class Follower(db.Model):
-    __tablename__ = 'follower'
-    user_from_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False, primary_key=True)
-    user_to_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False, primary_key=True)
+class Starships(db.Model):
+    __tablename__ = "starships"
+    id = db.Column(db.Integer, primary_key=True)
+    model = db.Column(db.String(250), nullable=False, unique = True)
+    starship_class = db.Column(db.String(250))
+    manufacturer = db.Column(db.String(250))
+    cost_in_credits = db.Column(db.Integer(250))
+    length = db.Column(db.Integer(250))
+    crew = db.Column(db.String(250))
+    passengers = db.Column(db.Integer(250))
+    max_atmosphering_speed = db.Column(db.Integer(250))
+    hyperdrive_rating = db.Column(db.String(250))
+    MGLT = db.Column(db.String(250))
+    cargo_capacity = db.Column(db.Integer(250))
+    consumables = db.Column(db.String(250))
+    pilots = db.Column(db.String(250))
+
+class Vehicles(db.Model):
+    __tablename__ = "vehicles"
+    id = db.Column(db.Integer, primary_key=True)
+    model = db.Column(db.String(250), nullable=False, unique = True)
+    vehicle_class = db.Column(db.String(250))
+    manufacturer = db.Column(db.String(250))
+    cost_in_credits = db.Column(db.Integer(250))
+    length = db.Column(db.Integer(250))
+    crew = db.Column(db.String(250))
+    passengers = db.Column(db.Integer(250))
+    max_atmosphering_speed = db.Column(db.Integer(250))
+    cargo_capacity = db.Column(db.Integer(250))
+    consumables = db.Column(db.String(250))
+    pilots = db.Column(db.String(250))
+
+class Species(db.Model):
+    __tablename__ = "species"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(250), nullable=False, unique = True)
+    classification = db.Column(db.String(250))
+    designation = db.Column(db.String(250))
+    average_height = db.Column(db.Integer(250))
+    average_lifespan = db.Column(db.Integer(250))
+    hair_colors = db.Column(db.String(250))
+    skin_colors = db.Column(db.String(250))
+    eye_colors = db.Column(db.String(250))
+    homeworld = db.Column(db.String(250))
+    language = db.Column(db.String(250))
+
 
 ## Draw from SQLAlchemy base
 try:
