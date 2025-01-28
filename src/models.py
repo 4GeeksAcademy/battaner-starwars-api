@@ -24,14 +24,7 @@ class Favourite_list(db.Model):
     user_favourite_id = db.Column(db.String(250), ForeignKey('user.id'), nullable=False)
 
 
-class Comment(db.Model):
-    __tablename__ = 'comment'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
-    id = db.Column(db.Integer, primary_key=True)
-    comment_text = db.Column(db.String(250), nullable=False)
-    author_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False)
-    post_id = db.Column(db.Integer, ForeignKey('post.id'), nullable=False)
+
 
 class Starships(db.Model):
     __tablename__ = "starships"
@@ -39,14 +32,14 @@ class Starships(db.Model):
     model = db.Column(db.String(250), nullable=False, unique = True)
     starship_class = db.Column(db.String(250))
     manufacturer = db.Column(db.String(250))
-    cost_in_credits = db.Column(db.Integer(250))
-    length = db.Column(db.Integer(250))
+    cost_in_credits = db.Column(db.Integer)
+    length = db.Column(db.Integer)
     crew = db.Column(db.String(250))
-    passengers = db.Column(db.Integer(250))
-    max_atmosphering_speed = db.Column(db.Integer(250))
+    passengers = db.Column(db.Integer)
+    max_atmosphering_speed = db.Column(db.Integer)
     hyperdrive_rating = db.Column(db.String(250))
     MGLT = db.Column(db.String(250))
-    cargo_capacity = db.Column(db.Integer(250))
+    cargo_capacity = db.Column(db.Integer)
     consumables = db.Column(db.String(250))
     pilots = db.Column(db.String(250))
 
@@ -56,12 +49,12 @@ class Vehicles(db.Model):
     model = db.Column(db.String(250), nullable=False, unique = True)
     vehicle_class = db.Column(db.String(250))
     manufacturer = db.Column(db.String(250))
-    cost_in_credits = db.Column(db.Integer(250))
-    length = db.Column(db.Integer(250))
+    cost_in_credits = db.Column(db.Integer)
+    length = db.Column(db.Integer)
     crew = db.Column(db.String(250))
-    passengers = db.Column(db.Integer(250))
-    max_atmosphering_speed = db.Column(db.Integer(250))
-    cargo_capacity = db.Column(db.Integer(250))
+    passengers = db.Column(db.Integer)
+    max_atmosphering_speed = db.Column(db.Integer)
+    cargo_capacity = db.Column(db.Integer)
     consumables = db.Column(db.String(250))
     pilots = db.Column(db.String(250))
 
@@ -71,8 +64,8 @@ class Species(db.Model):
     name = db.Column(db.String(250), nullable=False, unique = True)
     classification = db.Column(db.String(250))
     designation = db.Column(db.String(250))
-    average_height = db.Column(db.Integer(250))
-    average_lifespan = db.Column(db.Integer(250))
+    average_height = db.Column(db.Integer)
+    average_lifespan = db.Column(db.Integer)
     hair_colors = db.Column(db.String(250))
     skin_colors = db.Column(db.String(250))
     eye_colors = db.Column(db.String(250))
